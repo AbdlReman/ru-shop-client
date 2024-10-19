@@ -1,29 +1,38 @@
-import PropTypes from "prop-types"
-import React from "react"
-
-import { Route, Routes } from "react-router-dom"
+import React, { useEffect } from "react"
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom"
 import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 // Import Routes all
 import { userRoutes, authRoutes } from "./routes/allRoutes"
 
-// Import all middleware
-import Authmiddleware from "./routes/middleware/Authmiddleware"
-
-// layouts Format
+// Layouts
 import VerticalLayout from "./components/VerticalLayout/"
 import HorizontalLayout from "./components/HorizontalLayout/"
-import NonAuthLayout from "./components/NonAuthLayout"
 
-import "./assets/scss/theme.scss"
-
-import fakeBackend from "./helpers/AuthType/fakeBackend"
 import { CartProvider } from "components/context/CartContext"
 
+// Fake backend (if needed for testing)
+import fakeBackend from "./helpers/AuthType/fakeBackend"
 fakeBackend()
 
 const App = props => {
-  function getLayout() {
+  const navigate = useNavigate()
+
+  // Check if the user is visiting for the first time
+  useEffect(() => {
+    const isFirstVisit = localStorage.getItem("firstVisit")
+
+    if (!isFirstVisit) {
+      // Set a flag in localStorage for future visits
+      localStorage.setItem("firstVisit", "false")
+      // Redirect to the login or register page
+      navigate("/login")
+    }
+  }, [navigate])
+
+  // Determine layout type
+  const getLayout = () => {
     let layoutCls = VerticalLayout
     switch (props.layout.layoutType) {
       case "horizontal":
@@ -37,31 +46,37 @@ const App = props => {
   }
 
   const Layout = getLayout()
+
   return (
     <React.Fragment>
       <CartProvider>
         <Routes>
           {/* Non-authenticated routes */}
           {authRoutes.map((route, idx) => (
-            <Route
-              key={idx}
-              path={route.path}
-              element={<NonAuthLayout>{route.component}</NonAuthLayout>}
-            />
+            <Route key={idx} path={route.path} element={route.component} />
           ))}
 
-          {/* Authenticated routes */}
-          {userRoutes.map((route, idx) => (
-            <Route
-              key={idx}
-              path={route.path}
-              element={
-                <Authmiddleware>
-                  <Layout>{route.component}</Layout>
-                </Authmiddleware>
-              }
-            />
-          ))}
+          {/* Authenticated and other routes (accessible after first visit) */}
+          {userRoutes.map((route, idx) => {
+            // Check activation status
+            const isActivated = localStorage.getItem("isActivated") === "true"
+            return (
+              <Route
+                key={idx}
+                path={route.path}
+                element={
+                  isActivated ? (
+                    <Layout>{route.component}</Layout>
+                  ) : (
+                    <Navigate to="/activation" />
+                  )
+                }
+              />
+            )
+          })}
+
+          {/* Default route */}
+          <Route path="/" element={<Navigate to="/mainhome" />} />
         </Routes>
       </CartProvider>
     </React.Fragment>

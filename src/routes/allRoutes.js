@@ -26,6 +26,7 @@ import Products from "pages/Products"
 import Cart from "pages/Cart"
 import Checkout from "pages/Checkout"
 import MainHome from "pages/MainHome"
+import Activation from "pages/Activation"
 
 const userRoutes = [
   { path: "/dashboard", component: <Dashboard /> },
@@ -56,7 +57,7 @@ const userRoutes = [
 ]
 
 const authRoutes = [
-  { path: "/logout", component: <Logout /> },
+  { path: "/activation", component: <Activation /> },
   { path: "/login", component: <Login /> },
   { path: "/forgot-password", component: <ForgetPwd /> },
   { path: "/register", component: <Register /> },

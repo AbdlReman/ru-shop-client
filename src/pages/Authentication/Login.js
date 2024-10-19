@@ -1,211 +1,156 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { auth } from "../../firebase" // Adjust the path as needed
+import { signInWithEmailAndPassword } from "firebase/auth"
 import {
-  Container,
-  Row,
-  Col,
+  Alert,
   Card,
   CardBody,
-  Label,
+  Col,
+  Container,
   Form,
-  Alert,
   Input,
-  FormFeedback,
+  Label,
+  Row,
 } from "reactstrap"
 import logoDark from "../../assets/images/logo-dark.png"
-import logoLight from "../../assets/images/logo-dark.png"
-import { useSelector, useDispatch } from "react-redux"
-import { createSelector } from "reselect"
-import PropTypes from "prop-types"
 
-// Formik validation
-import * as Yup from "yup"
-import { useFormik } from "formik"
-import withRouter from "components/Common/withRouter"
+const Login = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
-// actions
-import { loginUser, socialLogin } from "../../store/actions"
+  const handleSubmit = async e => {
+    e.preventDefault()
+    setError(null)
 
-const Login = props => {
-  document.title = "Login | Lexa - Responsive Bootstrap 5 Admin Dashboard"
-
-  const dispatch = useDispatch()
-
-  const validation = useFormik({
-    // enableReinitialize : use this  flag when initial values needs to be changed
-    enableReinitialize: true,
-
-    initialValues: {
-      email: "admin@themesbrand.com" || "",
-      password: "123456" || "",
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().required("Please Enter Your Email"),
-      password: Yup.string().required("Please Enter Your Password"),
-    }),
-    onSubmit: values => {
-      dispatch(loginUser(values, props.router.navigate))
-    },
-  })
-
-  const selectLoginState = state => state.Login
-  const LoginProperties = createSelector(selectLoginState, login => ({
-    error: login.error,
-  }))
-
-  const { error } = useSelector(LoginProperties)
-
-  const signIn = type => {
-    dispatch(socialLogin(type, props.router.navigate))
-  }
-
-  //for facebook and google authentication
-  const socialResponse = type => {
-    signIn(type)
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      navigate("/dashboard") // Adjust the route based on your app's structure
+    } catch (error) {
+      setError(error.message)
+    }
   }
 
   return (
-    <React.Fragment>
-      <div className="account-pages my-5 pt-sm-5">
-        <Container>
-          <Row className="justify-content-center">
-            <Col md={8} lg={6} xl={5}>
-              <Card className="overflow-hidden">
-                <CardBody className="pt-0">
-                  <h3 className="text-center mt-5 mb-4">
-                    <Link to="/" className="d-block auth-logo">
-                      <img
-                        src={logoDark}
-                        alt=""
-                        height="30"
-                        className="auth-logo-dark"
+    <div className="account-pages my-5 pt-sm-5">
+      <Container>
+        <Row className="justify-content-center">
+          <Col md={8} lg={6} xl={5}>
+            <Card className="overflow-hidden loginform">
+              <CardBody className="pt-0">
+                <h3 className="text-center mt-5 mb-4">
+                  <Link to="/" className="d-block auth-logo">
+                    <img
+                      src={logoDark}
+                      alt=""
+                      height="30"
+                      className="auth-logo-dark"
+                    />
+                  </Link>
+                </h3>
+                <div className="p-3">
+                  <h4 className="text-muted font-size-18 mb-1 text-center">
+                    Welcome Back!
+                  </h4>
+                  <p className="text-muted text-center">Sign in to continue.</p>
+                  <Form
+                    className="form-horizontal mt-4"
+                    onSubmit={handleSubmit}
+                  >
+                    {error && <Alert color="danger">{error}</Alert>}
+                    <div className="mb-3">
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        name="email"
+                        className="form-control"
+                        placeholder="Enter email"
+                        type="email"
+                        onChange={e => setEmail(e.target.value)}
                       />
-                      <img
-                        src={logoLight}
-                        alt=""
-                        height="30"
-                        className="auth-logo-light"
-                      />
-                    </Link>
-                  </h3>
+                    </div>
 
-                  <div className="p-3">
-                    <h4 className="text-muted font-size-18 mb-1 text-center">
-                      Welcome Back !
-                    </h4>
-                    <p className="text-muted text-center">
-                      Sign in to continue to Lexa.
-                    </p>
-                    <Form
-                      className="form-horizontal mt-4"
-                      onSubmit={e => {
-                        e.preventDefault()
-                        validation.handleSubmit()
-                        return false
-                      }}
-                    >
-                      {error ? <Alert color="danger">{error}</Alert> : null}
-                      <div className="mb-3">
-                        <Label htmlFor="username">Username</Label>
-                        <Input
-                          name="email"
-                          className="form-control"
-                          placeholder="Enter email"
-                          type="email"
-                          onChange={validation.handleChange}
-                          onBlur={validation.handleBlur}
-                          value={validation.values.email || ""}
-                          invalid={
-                            validation.touched.email && validation.errors.email
-                              ? true
-                              : false
-                          }
-                        />
-                        {validation.touched.email && validation.errors.email ? (
-                          <FormFeedback type="invalid">
-                            {validation.errors.email}
-                          </FormFeedback>
-                        ) : null}
+                    <div className="mb-3">
+                      <Label htmlFor="password">Password</Label>
+                      <Input
+                        name="password"
+                        className="form-control"
+                        placeholder="Enter Password"
+                        type="password"
+                        onChange={e => setPassword(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="mb-3 row mt-4">
+                      <div className="col-12 text-end">
+                        <button
+                          className="btn btn-primary w-md waves-effect waves-light"
+                          type="submit"
+                        >
+                          Login
+                        </button>
                       </div>
-                      <div className="mb-3">
-                        <Label htmlFor="userpassword">Password</Label>
-                        <Input
-                          name="password"
-                          value={validation.values.password || ""}
-                          type="password"
-                          placeholder="Enter Password"
-                          onChange={validation.handleChange}
-                          onBlur={validation.handleBlur}
-                          invalid={
-                            validation.touched.password &&
-                            validation.errors.password
-                              ? true
-                              : false
-                          }
-                        />
-                        {validation.touched.password &&
-                        validation.errors.password ? (
-                          <FormFeedback type="invalid">
-                            {validation.errors.password}
-                          </FormFeedback>
-                        ) : null}
-                      </div>
-                      <Row className="mb-3 mt-4">
-                        <div className="col-6">
-                          <div className="form-check">
-                            <input
-                              type="checkbox"
-                              className="form-check-input"
-                              id="customControlInline"
-                            />
-                            <label
-                              className="form-check-label"
-                              htmlFor="customControlInline"
-                            >
-                              Remember me
-                            </label>
-                          </div>
-                        </div>
-                        <div className="col-6 text-end">
-                          <button
-                            className="btn btn-primary w-md waves-effect waves-light"
-                            type="submit"
-                          >
-                            Log In
-                          </button>
-                        </div>
-                      </Row>
-                      <Row className="form-group mb-0">
-                        <Link to="/register" className="text-muted">
-                          <i className="mdi mdi-lock"></i> Register your account
-                        </Link>
-                        {/* <div className="col-12 mt-4 d-flex justify-content-center">
-                          <Link
-                            to="#"
-                            className="social-list-item bg-danger text-white border-danger"
-                            onClick={e => {
-                              e.preventDefault()
-                              socialResponse("google")
-                            }}
-                          >
-                            <i className="mdi mdi-google" />
+                    </div>
+                    <div className="mb-0 row">
+                      <div className="col-12 mt-4 text-center">
+                        <p className="text-muted mb-0 font-size-14">
+                          Don't have an account?{" "}
+                          <Link to="/register" className="text-primary">
+                            {" "}
+                            Register{" "}
                           </Link>
-                        </div> */}
-                      </Row>
-                    </Form>
-                  </div>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </React.Fragment>
+                        </p>
+                      </div>
+                    </div>
+                  </Form>
+                </div>
+              </CardBody>
+            </Card>
+            <div className="mt-5 text-center">
+              <p>© {new Date().getFullYear()} Your App Name</p>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <style jsx>{`
+        .account-pages {
+          background-color: #121212; /* Dark background */
+          color: white; /* White text */
+          min-height: 100vh; /* Full height */
+        }
+        .loginform {
+          background-color: #0c041b; /* Dark background */
+        }
+        .form-input {
+          background-color: #1f2431; /* Input background */
+          color: white; /* Input text color */
+          border: 1px solid #ddd; /* Input border */
+        }
+        .form-input:focus {
+          border-color: #992123; /* Border color on focus */
+          outline: none; /* No outline */
+        }
+        .confirm-order-button {
+          width: 100%;
+          padding: 10px;
+          background-color: #007bff; /* Button color */
+          color: white; /* Button text color */
+          border: none; /* No border */
+          border-radius: 5px; /* Rounded corners */
+          cursor: pointer; /* Pointer on hover */
+          font-size: 18px; /* Font size */
+          font-weight: bold; /* Bold text */
+        }
+        .confirm-order-button:hover {
+          background-color: #007acc; /* Button hover color */
+        }
+        .text-muted {
+          color: #b0b0b0; /* Muted text color */
+        }
+      `}</style>
+    </div>
   )
 }
 
-export default withRouter(Login)
-
-Login.propTypes = {
-  history: PropTypes.object,
-}
+export default Login
