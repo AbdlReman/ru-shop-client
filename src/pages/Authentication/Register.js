@@ -41,25 +41,23 @@ const Register = () => {
       <Container>
         <Row className="justify-content-center">
           <Col md={8} lg={6} xl={5}>
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden loginform">
               <CardBody className="pt-0">
-                <h3 className="text-center mt-5 mb-4">
+                <h3 className="text-center">
                   <Link to="/" className="d-block auth-logo">
                     <img
                       src={logoDark}
                       alt=""
-                      height="30"
+                      height="190"
                       className="auth-logo-dark"
                     />
                   </Link>
                 </h3>
                 <div className="p-3">
-                  <h4 className="text-muted font-size-18 mb-1 text-center">
+                  <h4 className=" font-size-18 mb-1 text-center">
                     Free Register
                   </h4>
-                  <p className="text-muted text-center">
-                    Get your free account now.
-                  </p>
+                  <p className=" text-center">Get your free account now.</p>
                   <Form
                     className="form-horizontal mt-4"
                     onSubmit={handleSubmit}
@@ -76,7 +74,7 @@ const Register = () => {
                       <Input
                         id="email"
                         name="email"
-                        className="form-control"
+                        className="form-control form-input"
                         placeholder="Enter email"
                         type="email"
                         onChange={e => setEmail(e.target.value)}
@@ -88,7 +86,7 @@ const Register = () => {
                       <Input
                         id="username"
                         name="username"
-                        className="form-control"
+                        className="form-control form-input"
                         placeholder="Enter username"
                         type="text"
                         onChange={e => setUsername(e.target.value)}
@@ -100,7 +98,7 @@ const Register = () => {
                       <Input
                         id="password"
                         name="password"
-                        className="form-control"
+                        className="form-control form-input"
                         placeholder="Enter Password"
                         type="password"
                         onChange={e => setPassword(e.target.value)}
@@ -110,7 +108,7 @@ const Register = () => {
                     <div className="mb-3 row mt-4">
                       <div className="col-12 text-end">
                         <button
-                          className="btn btn-primary w-md waves-effect waves-light"
+                          className="btn loginbtn btn-primary w-md waves-effect waves-light"
                           type="submit"
                         >
                           Register
@@ -119,7 +117,7 @@ const Register = () => {
                     </div>
                     <div className="mb-0 row">
                       <div className="col-12 mt-4 text-center">
-                        <p className="text-muted mb-0 font-size-14">
+                        <p className=" mb-0 font-size-14">
                           By registering you agree to the{" "}
                           <Link to="#" className="text-primary">
                             Terms of Use
@@ -135,15 +133,45 @@ const Register = () => {
               <p>
                 Already have an account?{" "}
                 <Link to="/login" className="text-primary">
-                  {" "}
-                  Login{" "}
-                </Link>{" "}
+                  Login
+                </Link>
               </p>
               © {new Date().getFullYear()} Your App Name
             </div>
           </Col>
         </Row>
       </Container>
+      <style jsx>{`
+        .account-pages {
+          min-height: 100vh; /* Full height */
+          background-color: #192938; /* Background color */
+        }
+
+        .loginform {
+          background-color: #0b1c2c; /* Dark background */
+          color: white;
+        }
+
+        .form-input {
+          background-color: #1f2431; /* Input background */
+          color: white; /* Input text color */
+          border: 1px solid #ddd; /* Input border */
+        }
+
+        .form-input:focus {
+          border-color: #992123; /* Border color on focus */
+          outline: none; /* No outline */
+        }
+
+        .loginbtn {
+          background-color: #0998a8;
+          color: white; /* Button text color */
+        }
+
+        .text-primary {
+          color: #0998a8 !important; /* Link color */
+        }
+      `}</style>
     </div>
   )
 }

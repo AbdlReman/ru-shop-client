@@ -111,9 +111,10 @@ const Activation = () => {
   return (
     <>
       <header id="page-topbar">
-        <div className="navbar-header">
+        <div className="navbar-header" style={{ background: "#0b1c2c" }}>
           <div className="d-flex">
-            <div className="navbar-brand-box">
+            <img src={logoDark} alt="" height="80" />
+            {/* <div className="navbar-brand-box">
               <div className="logo logo-dark">
                 <span className="logo-sm">
                   <img src={logo} alt="" height="22" />
@@ -131,7 +132,7 @@ const Activation = () => {
                   <img src={logoLightPng} alt="" height="19" />
                 </span>
               </div>
-            </div>
+            </div> */}
             <button
               type="button"
               className="btn btn-sm px-3 font-size-24 header-item waves-effect vertical-menu-btn"
@@ -283,11 +284,11 @@ const Activation = () => {
 
         <style jsx>{`
           .activation-modal {
-            max-width: 90%;
+            max-width: 60%;
             margin: 0 auto;
-            margin-top: 5%;
+            margin-top: 9%;
             padding: 20px;
-            background-color: #2a3142;
+            background-color: #0b1c2c;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             color: white;
@@ -315,6 +316,7 @@ const Activation = () => {
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+            color: white;
           }
 
           .form-input:focus {
@@ -326,7 +328,7 @@ const Activation = () => {
           .confirm-order-button {
             width: 100%;
             padding: 10px;
-            background-color: #7a6fbe;
+            background-color: #192938;
             color: white;
             border: none;
             border-radius: 5px;
@@ -337,12 +339,19 @@ const Activation = () => {
 
           .activate-button:hover,
           .confirm-order-button:hover {
-            background-color: #7a5fbe;
+            background-color: #192939;
           }
 
           .qr-code {
             margin: 20px auto;
             display: block;
+          }
+          @media (max-width: 768px) {
+            .activation-modal {
+              width: 95%%; /* Full width for small screens */
+              max-width: 100%;
+              margin-top: 15%;
+            }
           }
         `}</style>
       </div>

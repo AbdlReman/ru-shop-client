@@ -40,21 +40,21 @@ const Login = () => {
           <Col md={8} lg={6} xl={5}>
             <Card className="overflow-hidden loginform">
               <CardBody className="pt-0">
-                <h3 className="text-center mt-5 mb-4">
+                <h3 className="text-center">
                   <Link to="/" className="d-block auth-logo">
                     <img
                       src={logoDark}
                       alt=""
-                      height="30"
+                      height="190"
                       className="auth-logo-dark"
                     />
                   </Link>
                 </h3>
                 <div className="p-3">
-                  <h4 className="text-muted font-size-18 mb-1 text-center">
+                  <h4 className=" font-size-18 mb-1 text-center">
                     Welcome Back!
                   </h4>
-                  <p className="text-muted text-center">Sign in to continue.</p>
+                  <p className=" text-center">Sign in to continue.</p>
                   <Form
                     className="form-horizontal mt-4"
                     onSubmit={handleSubmit}
@@ -85,7 +85,7 @@ const Login = () => {
                     <div className="mb-3 row mt-4">
                       <div className="col-12 text-end">
                         <button
-                          className="btn btn-primary w-md waves-effect waves-light"
+                          className="btn loginbtn btn-primary w-md waves-effect waves-light "
                           type="submit"
                         >
                           Login
@@ -94,7 +94,7 @@ const Login = () => {
                     </div>
                     <div className="mb-0 row">
                       <div className="col-12 mt-4 text-center">
-                        <p className="text-muted mb-0 font-size-14">
+                        <p className=" mb-0 font-size-14">
                           Don't have an account?{" "}
                           <Link to="/register" className="text-primary">
                             {" "}
@@ -108,19 +108,20 @@ const Login = () => {
               </CardBody>
             </Card>
             <div className="mt-5 text-center">
-              <p>© {new Date().getFullYear()} Your App Name</p>
+              <p>© {new Date().getFullYear()} Russain Shop</p>
             </div>
           </Col>
         </Row>
       </Container>
       <style jsx>{`
         .account-pages {
-          background-color: #121212; /* Dark background */
-          color: white; /* White text */
+          // background-color: #121212; /* Dark background */
           min-height: 100vh; /* Full height */
         }
+
         .loginform {
-          background-color: #0c041b; /* Dark background */
+          background-color: #0b1c2c; /* Dark background */
+          color: white;
         }
         .form-input {
           background-color: #1f2431; /* Input background */
@@ -129,24 +130,18 @@ const Login = () => {
         }
         .form-input:focus {
           border-color: #992123; /* Border color on focus */
+
           outline: none; /* No outline */
         }
-        .confirm-order-button {
-          width: 100%;
-          padding: 10px;
-          background-color: #007bff; /* Button color */
-          color: white; /* Button text color */
-          border: none; /* No border */
-          border-radius: 5px; /* Rounded corners */
-          cursor: pointer; /* Pointer on hover */
-          font-size: 18px; /* Font size */
-          font-weight: bold; /* Bold text */
+
+        .loginbtn {
+          background-color: #0998a8;
+          color: white; /* Muted text color */
         }
-        .confirm-order-button:hover {
-          background-color: #007acc; /* Button hover color */
-        }
-        .text-muted {
-          color: #b0b0b0; /* Muted text color */
+        .text-primary {
+           {
+            color: #0998a8 !important; /* Muted text color */
+          }
         }
       `}</style>
     </div>
