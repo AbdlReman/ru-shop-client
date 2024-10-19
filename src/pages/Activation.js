@@ -113,7 +113,7 @@ const Activation = () => {
       <header id="page-topbar">
         <div className="navbar-header" style={{ background: "#0b1c2c" }}>
           <div className="d-flex">
-            <img src={logoDark} alt="" height="80" />
+            {/* <img src={logoDark} alt="" height="80" /> */}
             {/* <div className="navbar-brand-box">
               <div className="logo logo-dark">
                 <span className="logo-sm">
