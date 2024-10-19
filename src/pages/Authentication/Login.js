@@ -64,7 +64,7 @@ const Login = () => {
                       <Label htmlFor="email">Email</Label>
                       <Input
                         name="email"
-                        className="form-control"
+                        className="form-control form-input"
                         placeholder="Enter email"
                         type="email"
                         onChange={e => setEmail(e.target.value)}
@@ -75,7 +75,7 @@ const Login = () => {
                       <Label htmlFor="password">Password</Label>
                       <Input
                         name="password"
-                        className="form-control"
+                        className="form-control form-input"
                         placeholder="Enter Password"
                         type="password"
                         onChange={e => setPassword(e.target.value)}
