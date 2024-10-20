@@ -350,7 +350,7 @@ const Activation = () => {
             .activation-modal {
               width: 95%%; /* Full width for small screens */
               max-width: 100%;
-              margin-top: 15%;
+              margin-top: 30%;
             }
           }
         `}</style>

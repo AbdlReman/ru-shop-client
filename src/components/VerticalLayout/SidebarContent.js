@@ -156,6 +156,21 @@ const SidebarContent = props => {
                 <span>{props.t("Cards")}</span>
               </Link>
             </li>
+            <li>
+              <Link to="/cards" className="waves-effect">
+                <i className="mdi mdi-text-box-multiple-outline"></i>
+                <span className="badge rounded-pill bg-primary float-end"></span>
+                <span>{props.t("Premium Cards")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/payment" className="waves-effect">
+                {/* <i className="mdi mdi-text-box-multiple-outline"></i> */}
+                <i className="mdi mdi-wallet " />
+                <span className="badge rounded-pill bg-primary float-end"></span>
+                <span>{props.t("Payment")}</span>
+              </Link>
+            </li>
 
             {/* <li>
               <Link to="/#" className="has-arrow waves-effect">
@@ -437,14 +452,6 @@ const SidebarContent = props => {
                 <li>
                   <Link to="/register">{props.t("Register")}</Link>
                 </li>
-                <li>
-                  <Link to="/page-recoverpw">
-                    {props.t("Recover Password")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/auth-lock-screen">{props.t("Lock Screen")}</Link>
-                </li>
               </ul>
             </li>
 
@@ -455,26 +462,11 @@ const SidebarContent = props => {
               </Link>
               <ul className="sub-menu">
                 <li>
-                  <Link to="/pages-timeline">{props.t("Timeline")}</Link>
-                </li>
-                <li>
-                  <Link to="/pages-invoice">{props.t("Invoice")}</Link>
-                </li>
-                <li>
-                  <Link to="/pages-directory">{props.t("Directory")}</Link>
-                </li>
-                <li>
-                  <Link to="/pages-blank">{props.t("Blank Page")}</Link>
-                </li>
-                <li>
                   <Link to="/pages-404">{props.t("Error 404")}</Link>
-                </li>
-                <li>
-                  <Link to="/pages-500">{props.t("Error 500")}</Link>
                 </li>
               </ul>
             </li>
-            <li>
+            {/* <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="mdi mdi-share-variant"></i>
                 <span>{props.t("Multi Level")}</span>
@@ -497,7 +489,7 @@ const SidebarContent = props => {
                   </ul>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
         </div>
       </SimpleBar>

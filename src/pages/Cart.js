@@ -102,7 +102,7 @@ export default function Cart() {
         )}
         <style jsx>{`
           .cartContainer {
-            background-color: #1f2431;
+            background-color: #0b1c2c;
             padding: 20px;
             color: #fff;
             border-radius: 8px;
@@ -122,7 +122,7 @@ export default function Cart() {
           .cartTable {
             width: 100%;
             border-collapse: collapse;
-            background-color: #2a3142;
+            background-color: #192938;
             color: #fff;
           }
           .cartTable th,
@@ -132,10 +132,10 @@ export default function Cart() {
             border: 1px solid #444;
           }
           .cartTable th {
-            background-color: #2a3142;
+            background-color: #192938;
           }
           .cartTable td {
-            background-color: #2a3142;
+            background-color: #192938;
           }
           .removeButton {
             background-color: #ff4d4f;
@@ -146,14 +146,14 @@ export default function Cart() {
             border-radius: 5px;
           }
           .removeButton:hover {
-            background-color: #ff3333;
+            background-color: #0998a8;
           }
           .cartActions {
             text-align: center;
             margin-top: 20px;
           }
           .checkoutButton {
-            background-color: #7a6fbe;
+            background-color: #0998a8;
             color: white;
             border: none;
             padding: 15px 20px;
@@ -161,7 +161,7 @@ export default function Cart() {
             cursor: pointer;
           }
           .checkoutButton:hover {
-            background-color: #685fa0;
+            background-color: #0b1c2c;
           }
 
           @media (max-width: 768px) {

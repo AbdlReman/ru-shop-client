@@ -129,8 +129,9 @@ export default function Checkout() {
         .checkout-container {
           max-width: 600px;
           margin: 0 auto;
+          margin-bottom: 15px;
           padding: 20px;
-          background-color: #2a3142;
+          background-color: #0b1c2c;
           border-radius: 8px;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -152,7 +153,7 @@ export default function Checkout() {
           color: #fff;
         }
         .form-input {
-          background-color: #1f2431;
+          background-color: #192938;
           width: 100%;
           padding: 10px;
           border: 1px solid #ddd;
@@ -167,7 +168,7 @@ export default function Checkout() {
           margin-top: 30px;
           margin-bottom: 30px;
           padding: 15px;
-          background-color: #1f2431;
+          background-color: #192938;
           border: 1px solid #ddd;
           border-radius: 5px;
         }
@@ -188,7 +189,7 @@ export default function Checkout() {
         .confirm-order-button {
           width: 100%;
           padding: 10px;
-          background-color: #7a6fbe;
+          background-color: #0998a8;
           color: white;
           border: none;
           border-radius: 5px;
@@ -197,7 +198,7 @@ export default function Checkout() {
           font-weight: bold;
         }
         .confirm-order-button:hover {
-          background-color: #7a5fbe;
+          background-color: #192938;
         }
         p {
           text-align: center;

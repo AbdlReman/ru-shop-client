@@ -39,10 +39,11 @@ const MainHome = () => {
               {" "}
               <li key={index} className="newsItem">
                 {" "}
-                {new Date(item.date).toLocaleString()} <br /> Last Update!
+                {new Date(item.date).toLocaleString()} <br />{" "}
+                <spam style={{ color: "#0998a8" }}>Last Update!</spam>
                 <br /> New CC added successfully done!
               </li>
-              <hr />
+              <hr style={{ color: "#0998a8" }} />
             </>
           ))
         )}
@@ -51,9 +52,10 @@ const MainHome = () => {
       <style jsx>{`
         .mainHomeContainer {
           padding: 20px;
-          background-color: #1f2431;
+          background-color: #0b1c2c;
           color: #fff;
           border-radius: 8px;
+          margin: 10px 0;
         }
         .newsList {
           list-style-type: none;
@@ -61,7 +63,8 @@ const MainHome = () => {
         }
         .newsItem {
           margin: 10px 0;
-          background-color: #2a3142;
+
+          background-color: #192938;
           padding: 10px;
           border-radius: 5px;
         }

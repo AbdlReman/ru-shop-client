@@ -1,5 +1,7 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
+import { auth } from "../../../firebase"
+import { onAuthStateChanged } from "firebase/auth"
 import {
   Dropdown,
   DropdownToggle,
@@ -21,6 +23,20 @@ const ProfileMenu = props => {
   // Declare a new state variable, which we'll call "menu"
   const [menu, setMenu] = useState(false)
 
+  const [userEmail, setUserEmail] = useState(null)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      if (user) {
+        setUserEmail(user.email) // Set the user email if authenticated
+      } else {
+        setUserEmail(null) // Clear the email if no user is authenticated
+      }
+    })
+
+    return () => unsubscribe() // Cleanup subscription on unmount
+  }, [])
+
   return (
     <React.Fragment>
       <Dropdown
@@ -40,10 +56,11 @@ const ProfileMenu = props => {
           />
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
-          <DropdownItem tag="a" href="/profile">
+          <DropdownItem tag="a" href="/">
             {" "}
             <i className="mdi mdi-account-circle font-size-17 text-muted align-middle me-1" />
-            {props.t("Profile")}{" "}
+            {/* {props.t("Profile")}{" "} */}
+            {userEmail}
           </DropdownItem>
           <DropdownItem className="d-flex align-items-center" to="#">
             <i className="mdi mdi-wallet font-size-17 text-muted align-middle me-1" />

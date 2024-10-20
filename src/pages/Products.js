@@ -1,29 +1,24 @@
-// import { useEffect, useState } from "react"
+// import React, { useEffect, useState } from "react"
+// import { Link } from "react-router-dom"
 // import { createClient } from "contentful"
 // import { useCart } from "components/context/CartContext"
 
-// // Initialize the Contentful client
 // const client = createClient({
-//   space: "36tnuwy9075k", // Store your Contentful space ID in .env.local
-//   accessToken: "w6FOfxZGLmHXenbMizDWOVvQaBagutljExDB9Ech09s", // Store your access token in .env.local
-//   environment: "master", // You can specify the environment if different
+//   space: "36tnuwy9075k",
+//   accessToken: "w6FOfxZGLmHXenbMizDWOVvQaBagutljExDB9Ech09s",
 // })
 
-// export default function Products() {
-//   const { addToCart, cart } = useCart() // Use cart context
+// export default function Cards() {
+//   const { addToCart, cart } = useCart()
 //   const [products, setProducts] = useState([])
 //   const [searchTerm, setSearchTerm] = useState("")
 //   const [countryFilter, setCountryFilter] = useState("")
 //   const [visaTypeFilter, setVisaTypeFilter] = useState("")
 
-//   // Fetch data from Contentful when component mounts
 //   useEffect(() => {
 //     const fetchProducts = async () => {
 //       try {
-//         const response = await client.getEntries({
-//           content_type: "product", // Assuming 'product' is your content type ID in Contentful
-//         })
-
+//         const response = await client.getEntries({ content_type: "product" })
 //         const fetchedProducts = response.items.map(item => ({
 //           id: item.sys.id,
 //           type: item.fields.type,
@@ -39,13 +34,11 @@
 //           refund: item.fields.refund,
 //           price: item.fields.price,
 //         }))
-
 //         setProducts(fetchedProducts)
 //       } catch (error) {
 //         console.error("Error fetching products from Contentful:", error)
 //       }
 //     }
-
 //     fetchProducts()
 //   }, [])
 
@@ -72,15 +65,14 @@
 //   })
 
 //   return (
-//     <div className="products-container">
-//       <h1 className="products-title">Product List</h1>
+//     <div className="productsContainer">
+//       <h1 className="productsTitle">Product List</h1>
 
-//       {/* Filters */}
-//       <div className="products-filters">
+//       <div className="productsFilters">
 //         <select
 //           value={countryFilter}
 //           onChange={e => setCountryFilter(e.target.value)}
-//           className="products-select"
+//           className="productsSelect"
 //         >
 //           <option value="">Select Country</option>
 //           {Array.from(new Set(products.map(product => product.country))).map(
@@ -88,13 +80,14 @@
 //               <option key={country} value={country}>
 //                 {country}
 //               </option>
-//             ),
+//             )
 //           )}
 //         </select>
+
 //         <select
 //           value={visaTypeFilter}
 //           onChange={e => setVisaTypeFilter(e.target.value)}
-//           className="products-select"
+//           className="productsSelect"
 //         >
 //           <option value="">Select Visa Type</option>
 //           {Array.from(new Set(products.map(product => product.type))).map(
@@ -102,76 +95,75 @@
 //               <option key={type} value={type}>
 //                 {type}
 //               </option>
-//             ),
+//             )
 //           )}
 //         </select>
-//         <br />
+
 //         <input
 //           type="text"
 //           placeholder="Search across all fields..."
 //           value={searchTerm}
 //           onChange={e => setSearchTerm(e.target.value)}
-//           className="products-search-input"
+//           className="productsSearchInput"
 //         />
 //       </div>
 
 //       {filteredProducts.length === 0 ? (
 //         <p>No products found.</p>
 //       ) : (
-//         <div className="products-table-container">
-//           <table className="products-table">
+//         <div className="productsTableContainer">
+//           <table className="productsTable">
 //             <thead>
-//               <tr className="products-table-header">
-//                 <th className="products-table-header-cell">Image</th>
-//                 <th className="products-table-header-cell">Type</th>
-//                 <th className="products-table-header-cell">Bin</th>
-//                 <th className="products-table-header-cell">Exp Date</th>
-//                 <th className="products-table-header-cell">CVV</th>
-//                 <th className="products-table-header-cell">Country</th>
-//                 <th className="products-table-header-cell">Bank</th>
-//                 <th className="products-table-header-cell">Address</th>
-//                 <th className="products-table-header-cell">Security PIN</th>
-//                 <th className="products-table-header-cell">Non VBV</th>
-//                 <th className="products-table-header-cell">Refund</th>
-//                 <th className="products-table-header-cell">Price</th>
-//                 <th className="products-table-header-cell">Action</th>
+//               <tr className="productsTableHeader">
+//                 <th>Image</th>
+//                 <th>Type</th>
+//                 <th>Bin</th>
+//                 <th>Exp Date</th>
+//                 <th>CVV</th>
+//                 <th>Country</th>
+//                 <th>Bank</th>
+//                 <th>Address</th>
+//                 <th>Security PIN</th>
+//                 <th>Non VBV</th>
+//                 <th>Refund</th>
+//                 <th>Price</th>
+//                 <th>Action</th>
 //               </tr>
 //             </thead>
 //             <tbody>
 //               {filteredProducts.map(product => (
-//                 <tr key={product.id} className="products-table-row">
-//                   <td className="products-table-cell">
+//                 <tr key={product.id} className="productsTableRow">
+//                   <td>
 //                     {product.typeImage ? (
 //                       <img
 //                         src={product.typeImage}
 //                         alt={product.type}
-//                         className="products-image"
+//                         className="productsImage"
 //                       />
 //                     ) : (
 //                       "No Image"
 //                     )}
 //                   </td>
-//                   <td className="products-table-cell">{product.type}</td>
-//                   <td className="products-table-cell">{product.bin}</td>
-//                   <td className="products-table-cell">{product.expDate}</td>
-//                   <td className="products-table-cell">{product.cvv}</td>
-//                   <td className="products-table-cell">{product.country}</td>
-//                   <td className="products-table-cell">{product.bank}</td>
-//                   <td className="products-table-cell">{product.address}</td>
-//                   <td className="products-table-cell">{product.securityPin}</td>
-//                   <td className="products-table-cell">
-//                     {product.nonVbv ? "Yes" : "No"}
-//                   </td>
-//                   <td className="products-table-cell">
-//                     {product.refund ? "Yes" : "No"}
-//                   </td>
-//                   <td className="products-table-cell">${product.price}</td>
-//                   <td className="products-table-cell">
+//                   <td>{product.type}</td>
+//                   <td>{product.bin}</td>
+//                   <td>{product.expDate}</td>
+//                   <td>{product.cvv}</td>
+//                   <td>{product.country}</td>
+//                   <td>{product.bank}</td>
+//                   <td>{product.address}</td>
+//                   <td>{product.securityPin}</td>
+//                   <td>{product.nonVbv ? "Yes" : "No"}</td>
+//                   <td>{product.refund ? "Yes" : "No"}</td>
+//                   <td>${product.price}</td>
+//                   <td>
 //                     <button
-//                       className="products-add-to-cart-button"
-//                       onClick={() => addToCart(product)}
+//                       className="productsAddToCartButton"
+//                       onClick={e => {
+//                         e.preventDefault()
+//                         addToCart(product)
+//                       }}
 //                     >
-//                       buy
+//                       Buy
 //                     </button>
 //                   </td>
 //                 </tr>
@@ -181,82 +173,81 @@
 //         </div>
 //       )}
 
-//       <a href="/cart">
-//         <button className="products-cart-button">
-//           View Cart ({cart.length})
+//       <Link to="/cart">
+//         <button className="productsCartButton">
+//           Go to Cart ({cart.length})
 //         </button>
-//       </a>
-
+//       </Link>
 //       <style jsx>{`
-//         .products-container {
-//           background-color: #050a1e;
+//         .productsContainer {
+//           background-color: #1f2431;
 //           padding: 20px;
 //           color: #fff;
 //           border-radius: 8px;
 //         }
-//         .products-title {
+//         .productsTitle {
 //           color: #fff;
 //           text-align: center;
 //           margin-bottom: 20px;
 //           font-size: 24px;
 //         }
-//         .products-filters {
+//         .productsFilters {
 //           margin-bottom: 20px;
 //         }
-//         .products-select {
+//         .productsSelect {
 //           padding: 10px;
 //           margin-bottom: 10px;
 //           border-radius: 5px;
 //           border: 1px solid #ddd;
-//           background-color:#2a3142;
+//           background-color: #2a3142;
 //           color: #fff;
 //         }
-//         .products-search-input {
+//         .productsSearchInput {
 //           flex-grow: 1;
 //           padding: 10px;
 //           border-radius: 5px;
 //           border: 1px solid #ddd;
 //           margin-top: 10px;
-//           background-color: #1f2947;
+//           background-color: #2a3142;
 //           color: #fff;
 //         }
-//         .products-table-container {
+//         .productsTableContainer {
 //           overflow-x: auto;
 //           border: 1px solid #ddd;
 //           border-radius: 8px;
 //         }
-//         .products-table {
+//         .productsTable {
 //           width: 100%;
-//           background-color: #10102e;
+//           background-color: #2a3142;
 //           border-collapse: collapse;
 //         }
-//         .products-table-header {
-//           background-color: #1f2947;
+//         .productsTableHeader {
+//           background-color: #2a3142;
 //           color: #fff;
 //         }
-//         .products-table-header-cell,
-//         .products-table-cell {
+//         .productsTableRow td,
+//         .productsTableHeader th {
 //           border: 1px solid #444;
 //           padding: 10px;
 //           color: #fff;
 //         }
-//         .products-table-row:hover {
+//         .productsTableRow:hover {
 //           background-color: #202a47;
 //         }
-//         .products-image {
+//         .productsImage {
 //           width: 50px;
 //           border-radius: 5px;
 //         }
-//         .products-add-to-cart-button {
-//           background-color: #ff3c00;
+//         .productsAddToCartButton {
+//           background-color: #7a6fbe;
 //           color: #fff;
 //           border: none;
 //           padding: 10px 15px;
 //           border-radius: 5px;
 //           cursor: pointer;
 //         }
-//         .products-cart-button {
-//           background-color: #007bff;
+//         .productsCartButton {
+//           background-color: #7a6fbe;
 //           color: #fff;
 //           border: none;
 //           padding: 10px 15px;
@@ -285,6 +276,12 @@ export default function Cards() {
   const [searchTerm, setSearchTerm] = useState("")
   const [countryFilter, setCountryFilter] = useState("")
   const [visaTypeFilter, setVisaTypeFilter] = useState("")
+  const [bankFilter, setBankFilter] = useState("")
+  const [priceSort, setPriceSort] = useState("")
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1)
+  const [productsPerPage] = useState(10)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -313,33 +310,66 @@ export default function Cards() {
     fetchProducts()
   }, [])
 
-  const filteredProducts = products.filter(product => {
-    const term = searchTerm.toLowerCase()
-    const matchesSearchTerm =
-      product.type.toLowerCase().includes(term) ||
-      product.bin.toLowerCase().includes(term) ||
-      product.expDate.toLowerCase().includes(term) ||
-      product.cvv.toLowerCase().includes(term) ||
-      product.country.toLowerCase().includes(term) ||
-      product.bank.toLowerCase().includes(term) ||
-      product.address.toLowerCase().includes(term) ||
-      product.securityPin.toLowerCase().includes(term) ||
-      (product.nonVbv ? "yes" : "no").toLowerCase().includes(term) ||
-      (product.refund ? "yes" : "no").toLowerCase().includes(term) ||
-      product.price.toString().toLowerCase().includes(term)
-    const matchesCountryFilter =
-      countryFilter === "" || product.country === countryFilter
-    const matchesVisaTypeFilter =
-      visaTypeFilter === "" || product.type === visaTypeFilter
+  // Sorting products by price
+  const sortProductsByPrice = (products, sortOption) => {
+    if (sortOption === "lowToHigh") {
+      return [...products].sort((a, b) => a.price - b.price)
+    } else if (sortOption === "highToLow") {
+      return [...products].sort((a, b) => b.price - a.price)
+    }
+    return products
+  }
 
-    return matchesSearchTerm && matchesCountryFilter && matchesVisaTypeFilter
-  })
+  // Filter products based on selected filters and search term
+  const filteredProducts = products
+    .filter(product => {
+      const term = searchTerm.toLowerCase()
+      const matchesSearchTerm =
+        product.type.toLowerCase().includes(term) ||
+        product.bin.toLowerCase().includes(term) ||
+        product.expDate.toLowerCase().includes(term) ||
+        product.cvv.toLowerCase().includes(term) ||
+        product.country.toLowerCase().includes(term) ||
+        product.bank.toLowerCase().includes(term) ||
+        product.address.toLowerCase().includes(term) ||
+        product.securityPin.toLowerCase().includes(term) ||
+        (product.nonVbv ? "yes" : "no").toLowerCase().includes(term) ||
+        (product.refund ? "yes" : "no").toLowerCase().includes(term) ||
+        product.price.toString().toLowerCase().includes(term)
+
+      const matchesCountryFilter =
+        countryFilter === "" || product.country === countryFilter
+      const matchesVisaTypeFilter =
+        visaTypeFilter === "" || product.type === visaTypeFilter
+      const matchesBankFilter = bankFilter === "" || product.bank === bankFilter
+
+      return (
+        matchesSearchTerm &&
+        matchesCountryFilter &&
+        matchesVisaTypeFilter &&
+        matchesBankFilter
+      )
+    })
+    .sort((a, b) =>
+      priceSort === "lowToHigh" ? a.price - b.price : b.price - a.price
+    )
+
+  // Pagination logic
+  const indexOfLastProduct = currentPage * productsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  )
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
+
+  const paginate = pageNumber => setCurrentPage(pageNumber)
 
   return (
     <div className="productsContainer">
       <h1 className="productsTitle">Product List</h1>
 
-      <div className="productsFilters">
+      <div className="productsFiltersRow1">
         <select
           value={countryFilter}
           onChange={e => setCountryFilter(e.target.value)}
@@ -368,6 +398,33 @@ export default function Cards() {
               </option>
             )
           )}
+        </select>
+
+        <select
+          value={bankFilter}
+          onChange={e => setBankFilter(e.target.value)}
+          className="productsSelect"
+        >
+          <option value="">Select Bank</option>
+          {Array.from(new Set(products.map(product => product.bank))).map(
+            bank => (
+              <option key={bank} value={bank}>
+                {bank}
+              </option>
+            )
+          )}
+        </select>
+      </div>
+
+      <div className="productsFiltersRow2">
+        <select
+          value={priceSort}
+          onChange={e => setPriceSort(e.target.value)}
+          className="productsSelect"
+        >
+          <option value="">Sort by Price</option>
+          <option value="lowToHigh">Low to High</option>
+          <option value="highToLow">High to Low</option>
         </select>
 
         <input
@@ -402,7 +459,7 @@ export default function Cards() {
               </tr>
             </thead>
             <tbody>
-              {filteredProducts.map(product => (
+              {currentProducts.map(product => (
                 <tr key={product.id} className="productsTableRow">
                   <td>
                     {product.typeImage ? (
@@ -444,89 +501,149 @@ export default function Cards() {
         </div>
       )}
 
+      {/* Pagination */}
+      <div className="pagination">
+        <button
+          onClick={() => paginate(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => paginate(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => paginate(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+
       <Link to="/cart">
         <button className="productsCartButton">
           Go to Cart ({cart.length})
         </button>
       </Link>
-      <style jsx>{`
-        .productsContainer {
-          background-color: #1f2431;
-          padding: 20px;
-          color: #fff;
-          border-radius: 8px;
-        }
-        .productsTitle {
-          color: #fff;
-          text-align: center;
-          margin-bottom: 20px;
-          font-size: 24px;
-        }
-        .productsFilters {
-          margin-bottom: 20px;
-        }
-        .productsSelect {
-          padding: 10px;
-          margin-bottom: 10px;
-          border-radius: 5px;
-          border: 1px solid #ddd;
-          background-color: #2a3142;
-          color: #fff;
-        }
-        .productsSearchInput {
-          flex-grow: 1;
-          padding: 10px;
-          border-radius: 5px;
-          border: 1px solid #ddd;
-          margin-top: 10px;
-          background-color: #2a3142;
-          color: #fff;
-        }
-        .productsTableContainer {
-          overflow-x: auto;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-        }
-        .productsTable {
-          width: 100%;
-          background-color: #2a3142;
-          border-collapse: collapse;
-        }
-        .productsTableHeader {
-          background-color: #2a3142;
-          color: #fff;
-        }
-        .productsTableRow td,
-        .productsTableHeader th {
-          border: 1px solid #444;
-          padding: 10px;
-          color: #fff;
-        }
-        .productsTableRow:hover {
-          background-color: #202a47;
-        }
-        .productsImage {
-          width: 50px;
-          border-radius: 5px;
-        }
-        .productsAddToCartButton {
-          background-color: #7a6fbe;
-          color: #fff;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-        .productsCartButton {
-          background-color: #7a6fbe;
-          color: #fff;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-          margin-top: 20px;
-        }
-      `}</style>
+
+      <style jsx>
+        <style jsx>{`
+          .productsContainer {
+            background-color: #0b1c2c;
+            margin: 10px 0;
+            padding: 20px;
+            color: #fff;
+            border-radius: 8px;
+          }
+          .productsTitle {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+          }
+          .productsFiltersRow1,
+          .productsFiltersRow2 {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+          }
+          .productsSearchInput {
+            background-color: #192938;
+            flex-grow: 2;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          .productsSelect {
+            background-color: #192938;
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 5px;
+          }
+          .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+          }
+          .pagination button {
+            padding: 8px 12px;
+            border: none;
+            background-color: #192938;
+            cursor: pointer;
+            border-radius: 5px;
+          }
+          .pagination .active {
+            background-color: #0998a8;
+            color: #fff;
+          }
+          .productsTableContainer {
+            margin-top: 30px;
+            overflow-x: auto; /* Enable horizontal scroll for the table */
+          }
+          .productsTable {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1b2738;
+            min-width: 900px; /* Set a minimum width to enable scrolling on small screens */
+          }
+          .productsTableHeader th {
+            color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+          }
+          .productsTableRow td {
+            color: #fff;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+          }
+          .productsImage {
+            max-width: 80px;
+            max-height: 60px;
+            object-fit: contain;
+          }
+          .productsAddToCartButton {
+            padding: 4px 8px;
+            border: none;
+            background-color: #0998a8;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          .productsCartButton {
+            display: block;
+            margin: 20px auto;
+            background-color: #0998a8;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+
+          @media (max-width: 768px) {
+            .productsFiltersRow1,
+            .productsFiltersRow2 {
+              flex-direction: column;
+            }
+
+            .productsTableContainer {
+              overflow-x: auto; /* Scroll horizontally for the table */
+            }
+
+            .productsTable {
+              width: 100%;
+              min-width: 600px; /* Ensure the table doesn't shrink too much */
+            }
+          }
+        `}</style>
+      </style>
     </div>
   )
 }

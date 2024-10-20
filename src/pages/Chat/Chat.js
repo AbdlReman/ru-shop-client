@@ -43,11 +43,11 @@ const Chat = () => {
       justifyContent: "center",
       alignItems: "center",
       minHeight: "100vh",
-      backgroundColor: "#1f2431", // Dark background
+      backgroundColor: "#0b1c2c", // Dark background
       padding: "20px",
     },
     formWrapper: {
-      backgroundColor: "#2a3142",
+      backgroundColor: "#192938",
       padding: "30px",
       borderRadius: "8px",
       width: "100%",
@@ -61,14 +61,14 @@ const Chat = () => {
       margin: "10px 0",
       borderRadius: "4px",
       border: "1px solid #555",
-      backgroundColor: "#1f2431",
+      backgroundColor: "#0b1c2c",
       color: "#fff",
       fontSize: "16px",
     },
     button: {
       width: "100%",
       padding: "12px",
-      backgroundColor: "#1f2431", // Button color
+      backgroundColor: "#0b1c2c", // Button color
       border: "none",
       borderRadius: "4px",
       color: "#fff",
@@ -77,7 +77,7 @@ const Chat = () => {
       marginTop: "10px",
     },
     buttonHover: {
-      backgroundColor: "#7a6fbe",
+      backgroundColor: "#0998a8",
     },
     title: {
       fontSize: "24px",

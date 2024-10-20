@@ -27,13 +27,16 @@ import Cart from "pages/Cart"
 import Checkout from "pages/Checkout"
 import MainHome from "pages/MainHome"
 import Activation from "pages/Activation"
+import Payment from "pages/Payment"
 
 const userRoutes = [
-  { path: "/dashboard", component: <Dashboard /> },
+  { path: "/dashboard", component: <MainHome /> },
+  { path: "/home", component: <MainHome /> },
   { path: "/cards", component: <Products /> },
   { path: "/mainhome", component: <MainHome /> },
   { path: "/cart", component: <Cart /> },
   { path: "/checkout", component: <Checkout /> },
+  { path: "/payment", component: <Payment /> },
 
   // //calendar
 
