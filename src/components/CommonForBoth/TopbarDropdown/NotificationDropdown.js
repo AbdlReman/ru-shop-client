@@ -168,6 +168,7 @@ const client = createClient({
 const NotificationDropdown = props => {
   const [menu, setMenu] = useState(false)
   const [notifications, setNotifications] = useState([])
+  const [addedCardsCount, setAddedCardsCount] = useState(0) // State for added cards count
 
   useEffect(() => {
     // Fetch products from Contentful
@@ -176,7 +177,7 @@ const NotificationDropdown = props => {
         const response = await client.getEntries({
           content_type: "product", // Use 'product' as the content type
           order: "-sys.createdAt", // Get the latest entries first
-          limit: 3, // Fetch only the latest 3 products
+          // Fetch only the latest 3 products
         })
 
         // Map the fetched products to the desired format
@@ -187,6 +188,9 @@ const NotificationDropdown = props => {
         }))
 
         setNotifications(fetchedNotifications)
+
+        // Simulating the number of cards added successfully
+        setAddedCardsCount(fetchedNotifications.length) // Update this as needed
       } catch (error) {
         console.error("Error fetching notifications:", error)
       }
@@ -209,24 +213,26 @@ const NotificationDropdown = props => {
           id="page-header-notifications-dropdown"
         >
           <i className="ti-bell"></i>
-          <span className="badge text-bg-danger rounded-pill">
-            {notifications.length}
-          </span>
+          <span className="badge text-bg-danger rounded-pill">3</span>
         </DropdownToggle>
 
         <DropdownMenu className="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0">
           <div className="p-3">
             <Row className="align-items-center">
               <Col>
-                <h5 className="m-0">
-                  {props.t("Notifications")} ({notifications.length})
-                </h5>
+                <h5 className="m-0">{props.t("")}</h5>
+                {addedCardsCount > 0 && (
+                  <h6 className="mt-1 mb-0 ">
+                    <span className="text-success m-2">{addedCardsCount}</span>{" "}
+                    CC added successfully.
+                  </h6>
+                )}
               </Col>
             </Row>
           </div>
 
           <SimpleBar style={{ height: "230px" }}>
-            {notifications.map(notification => (
+            {notifications.slice(0, 3).map(notification => (
               <Link
                 to="#"
                 className="text-reset notification-item"
