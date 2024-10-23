@@ -28,13 +28,16 @@ import Checkout from "pages/Checkout"
 import MainHome from "pages/MainHome"
 import Activation from "pages/Activation"
 import Payment from "pages/Payment"
+import Premium from "pages/Premium"
 
 const userRoutes = [
   { path: "/dashboard", component: <MainHome /> },
   { path: "/home", component: <MainHome /> },
   { path: "/cards", component: <Products /> },
+  { path: "/Premiumcards", component: <Premium /> },
   { path: "/mainhome", component: <MainHome /> },
   { path: "/cart", component: <Cart /> },
+
   { path: "/checkout", component: <Checkout /> },
   { path: "/payment", component: <Payment /> },
 

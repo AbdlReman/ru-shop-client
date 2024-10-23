@@ -93,7 +93,7 @@ const Header = props => {
             <div className="navbar-brand-box">
               <Link to="/" className="logo logo-dark">
                 <span className="logo-sm">
-                  <img src={logo} alt="" height="42" />
+                  <img src={logo} alt="" height="62" />
                 </span>
                 <span className="logo-lg">
                   <img src={logoDark} alt="" height="67" />
@@ -102,7 +102,7 @@ const Header = props => {
 
               <Link to="/" className="logo logo-light">
                 <span className="logo-sm">
-                  <img src={logo} alt="" height="42" />
+                  <img src={logo} alt="" height="62" />
                 </span>
                 <span className="logo-lg">
                   <img src={logoLightPng} alt="" height="69" />

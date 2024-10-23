@@ -144,21 +144,21 @@ const SidebarContent = props => {
             {/* <li className="menu-title">{props.t("Main")} </li> */}
             <li>
               <Link to="/" className="waves-effect">
-                <i className="mdi mdi-view-dashboard"></i>
+                <i className="mdi mdi-home-outline"></i>
                 <span className="badge rounded-pill bg-primary float-end"></span>
                 <span>{props.t("main")}</span>
               </Link>
             </li>
             <li>
               <Link to="/cards" className="waves-effect">
-                <i className="mdi mdi-text-box-multiple-outline"></i>
+                <i className="mdi mdi-credit-card-outline"></i>
                 <span className="badge rounded-pill bg-primary float-end"></span>
                 <span>{props.t("Cards")}</span>
               </Link>
             </li>
             <li>
-              <Link to="/cards" className="waves-effect">
-                <i className="mdi mdi-text-box-multiple-outline"></i>
+              <Link to="/Premiumcards" className="waves-effect">
+                <i className="mdi mdi-credit-card-outline"></i>
                 <span className="badge rounded-pill bg-primary float-end"></span>
                 <span>{props.t("Premium Cards")}</span>
               </Link>
@@ -166,29 +166,11 @@ const SidebarContent = props => {
             <li>
               <Link to="/payment" className="waves-effect">
                 {/* <i className="mdi mdi-text-box-multiple-outline"></i> */}
-                <i className="mdi mdi-wallet " />
+                <i className="mdi mdi-cash-plus " />
                 <span className="badge rounded-pill bg-primary float-end"></span>
                 <span>{props.t("Add Fund")}</span>
               </Link>
             </li>
-
-            {/* <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-email-outline"></i>
-                <span>{props.t("Email")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/email-inbox">{props.t("Inbox")}</Link>
-                </li>
-                <li>
-                  <Link to="/email-read">{props.t("Email Read")} </Link>
-                </li>
-                <li>
-                  <Link to="/email-compose">{props.t("Email Compose")} </Link>
-                </li>
-              </ul>
-            </li> */}
 
             <li>
               <Link to="/chat" className=" waves-effect">
@@ -197,246 +179,21 @@ const SidebarContent = props => {
                 <span>Message</span>
               </Link>
             </li>
+            <li>
+              <Link to="/login" className=" waves-effect">
+                <i className="mdi mdi-logout"></i>
 
-            {/* <li>
-              <Link to="/kanbanboard" className=" waves-effect">
-                <i className="mdi mdi-billboard"></i>
-                <span className="badge rounded-pill bg-success float-end">
-                  New
-                </span>
-                <span>Kanban Board</span>
+                <span>Log out</span>
               </Link>
-            </li> */}
-
-            {/* <li className="menu-title">{props.t("Components")}</li> */}
+            </li>
             {/* <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-buffer"></i>
-                <span>{props.t("UI Elements")}</span>
+              <Link to="/cart" className="waves-effect">
+              
+                <i className="mdi mdi-cart" />
+                <span className="badge rounded-pill bg-primary float-end"></span>
+                <span>{props.t("Cart")}</span>
               </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/ui-alerts">{props.t("Alerts")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-buttons">{props.t("Buttons")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-badge">{props.t("Badge")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-cards">{props.t("Cards")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-carousel">{props.t("Carousel")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-dropdowns">{props.t("Dropdowns")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-utilities">
-                    Utilities
-                    <span className="badge rounded-pill bg-success float-end">
-                      New
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/ui-grid">{props.t("Grid")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-images">{props.t("Images")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-lightbox">{props.t("Lightbox")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-modals">{props.t("Modals")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-colors">
-                    Colors
-                    <span className="badge rounded-pill bg-warning float-end">
-                      New
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/ui-offcanvas">
-                    Offcanvas
-                    <span className="badge rounded-pill bg-warning float-end">
-                      New
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/ui-pagination">{props.t("Pagination")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-popover-tooltip">
-                    {props.t("Popover & Tooltips")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/ui-rangeslider">{props.t("Range Slider")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-session-timeout">
-                    {props.t("Session Timeout")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/ui-progressbars">{props.t("Progress Bars")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-tabs-accordions">
-                    {props.t("Tabs & Accordions")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/ui-typography">{props.t("Typography")}</Link>
-                </li>
-                <li>
-                  <Link to="/ui-video">{props.t("Video")}</Link>
-                </li>
-              </ul>
-            </li> */}
-
-            {/* <li>
-              <Link to="/#" className="waves-effect">
-                <i className="mdi mdi-clipboard-outline"></i>
-                <span className="badge rounded-pill bg-success float-end">
-                  6
-                </span>
-                <span>{props.t("Forms")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/form-elements">{props.t("Form Elements")}</Link>
-                </li>
-                <li>
-                  <Link to="/form-validation">
-                    {props.t("Form Validation")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/form-advanced">{props.t("Form Advanced")}</Link>
-                </li>
-                <li>
-                  <Link to="/form-editors">{props.t("Form Editors")}</Link>
-                </li>
-                <li>
-                  <Link to="/form-uploads">{props.t("Form File Upload")} </Link>
-                </li>
-                <li>
-                  <Link to="/form-xeditable">{props.t("Form Xeditable")}</Link>
-                </li>
-              </ul>
-            </li> */}
-
-            {/* <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-chart-line"></i>
-                <span>{props.t("Charts")}</span>
-              </Link>
-
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/apex-charts">{props.t("Apex charts")}</Link>
-                </li>
-
-                <li>
-                  <Link to="/charts-chartjs" className="dropdown-item">
-                    {props.t("Chartjs Chart")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/sparkline-charts" className="dropdown-item">
-                    {props.t("Sparkline Chart")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/charts-c3" className="dropdown-item">
-                    {props.t("C3 Chart")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/charts-knob" className="dropdown-item">
-                    {props.t("Jquery Knob Chart")}
-                  </Link>
-                </li>
-              </ul>
-            </li> */}
-
-            {/* <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-format-list-bulleted-type"></i>
-                <span>{props.t("Tables")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/tables-basic">{props.t("Basic Tables")}</Link>
-                </li>
-                <li>
-                  <Link to="/tables-datatable">{props.t("Data Tables")}</Link>
-                </li>
-                <li>
-                  <Link to="/tables-responsive">
-                    {props.t("Responsive Table")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/tables-editable">{props.t("Editable Table")}</Link>
-                </li>
-              </ul>
-            </li> */}
-
-            {/* <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-album"></i>
-                <span>{props.t("Icons")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/icons-materialdesign">
-                    {props.t("Material Design")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/icons-ion">{props.t("Ion Icons")}</Link>
-                </li>
-                <li>
-                  <Link to="/icons-fontawesome">{props.t("Font Awesome")}</Link>
-                </li>
-                <li>
-                  <Link to="/icons-themify">{props.t("Themify Icons")}</Link>
-                </li>
-                <li>
-                  <Link to="/icons-dripicons">{props.t("Dripicons")}</Link>
-                </li>
-                <li>
-                  <Link to="/icons-typicons">{props.t("Typicons Icons")}</Link>
-                </li>
-              </ul>
-            </li> */}
-
-            {/* <li>
-              <Link to="/#" className="waves-effect">
-                <span className="badge rounded-pill bg-danger float-end">
-                  2
-                </span>
-                <i className="mdi mdi-google-maps"></i>
-                <span>{props.t("Maps")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/maps-google">{props.t("Google Maps")}</Link>
-                </li>
-                <li>
-                  <Link to="/maps-vector">{props.t("Vector Maps")}</Link>
-                </li>
-              </ul>
-            </li> */}
+            </li>
 
             <li className="menu-title">Extras</li>
 
@@ -465,7 +222,7 @@ const SidebarContent = props => {
                   <Link to="/pages-404">{props.t("Error 404")}</Link>
                 </li>
               </ul>
-            </li>
+            </li> */}
             {/* <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="mdi mdi-share-variant"></i>
