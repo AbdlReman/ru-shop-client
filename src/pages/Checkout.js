@@ -8,7 +8,31 @@ export default function Checkout() {
     name: "",
     email: "",
     phone: "",
+    paymentMethod: "",
   })
+
+  const paymentDetails = {
+    bitcoin: {
+      address: "17oXMnVMTCZyj9rThoZ3fBLvtUvuwu9VS1",
+      qrCodeImgUrl:
+        "https://res.cloudinary.com/dzeldg2vi/image/upload/fl_preserve_transparency/v1729576383/bitcoin_mu7mjz.jpg?_s=public-apps",
+    },
+    ltc: {
+      address: "LcGYdH9wBr6nNJcjZoREXQJEijS9M3drx7",
+      qrCodeImgUrl:
+        "https://res.cloudinary.com/dzeldg2vi/image/upload/fl_preserve_transparency/v1729576383/ltc_qucokf.jpg?_s=public-apps",
+    },
+    eth: {
+      address: "0x7e84309ea3ac919d2d4d910fb4134fe627e289e2",
+      qrCodeImgUrl:
+        "https://res.cloudinary.com/dzeldg2vi/image/upload/fl_preserve_transparency/v1729576383/eth_pjqgwm.jpg?_s=public-apps",
+    },
+    tron: {
+      address: "TEe6v4eDLZooWZpQ3Qg7XYqerbZpA1gUDj",
+      qrCodeImgUrl:
+        "https://res.cloudinary.com/dzeldg2vi/image/upload/fl_preserve_transparency/v1729576383/tron_x2fd7o.jpg?_s=public-apps",
+    },
+  }
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -36,7 +60,7 @@ export default function Checkout() {
     // Send email using EmailJS
     emailjs
       .send(
-        "service_5v6eeoi", // replace with your EmailJS service ID
+        "service_23gcvkn", // replace with your EmailJS service ID
         "template_udpu1go", // replace with your EmailJS template ID
         emailData,
         "aU2q_LGAXyRNadJu8" // replace with your EmailJS user ID
@@ -88,21 +112,47 @@ export default function Checkout() {
               />
             </div>
 
-            {/* Payment instructions */}
-            <h3 className="paymenth3">Deposit Money</h3>
-            <div className="payment-instructions">
-              {/* <p>Deposit Money</p> */}
-              <p>Deposits are added automatically within ~5 mins</p>
-              <p>
-                BTC Address: <strong>NySNDb3P3aX3JvjYvJLz1tBfHLejFW</strong>
-              </p>
-              <p>Alternatively, you can scan the QR code:</p>
-              <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:1NySNDb3P3aX3JvjYvJLz1tBfHLejFWic2"
-                alt="Bitcoin QR Code"
-                className="qr-code"
-              />
+            {/* Payment  */}
+            <div className="form-group">
+              <label htmlFor="paymentMethod">Select Payment Method:</label>
+              <select
+                name="paymentMethod"
+                id="paymentMethod"
+                value={formData.paymentMethod} // Changed to use formData
+                onChange={handleChange}
+                required
+                className="form-input"
+              >
+                <option value="">-- Select Payment Method --</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="ltc">LTC</option>
+                <option value="eth">Ethereum</option>
+                <option value="tron">Tron</option>
+              </select>
             </div>
+            {/* Conditionally display payment details based on selection */}
+            {formData.paymentMethod &&
+              paymentDetails[formData.paymentMethod] && (
+                <div className="payment-instructions">
+                  <h3 className="paymenth3">
+                    Deposit Money via {formData.paymentMethod.toUpperCase()}
+                  </h3>
+                  <p>Deposits are added automatically within ~5 mins</p>
+                  <p>
+                    {formData.paymentMethod.toUpperCase()} Address:{" "}
+                    <strong>
+                      {paymentDetails[formData.paymentMethod].address}
+                    </strong>
+                  </p>
+                  <p>Alternatively, you can scan the QR code:</p>
+                  <img
+                    src={paymentDetails[formData.paymentMethod].qrCodeImgUrl}
+                    alt={`${formData.paymentMethod} QR Code`}
+                    className="qr-code"
+                  />
+                </div>
+              )}
+
             <div className="form-group">
               <label htmlFor="phone">transaction ID (TXID)</label>
               <input

@@ -168,7 +168,7 @@ const SidebarContent = props => {
                 {/* <i className="mdi mdi-text-box-multiple-outline"></i> */}
                 <i className="mdi mdi-wallet " />
                 <span className="badge rounded-pill bg-primary float-end"></span>
-                <span>{props.t("Payment")}</span>
+                <span>{props.t("Add Fund")}</span>
               </Link>
             </li>
 

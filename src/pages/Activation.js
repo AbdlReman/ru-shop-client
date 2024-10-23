@@ -17,6 +17,7 @@ const Activation = () => {
   const [formData, setFormData] = useState({
     email: "",
     trxId: "",
+    paymentMethod: "",
   })
   const [activationKey, setActivationKey] = useState("")
   const [correctActivationKey, setCorrectActivationKey] = useState("") // State for correct activation key
@@ -28,6 +29,29 @@ const Activation = () => {
     space: "36tnuwy9075k", // Your space ID
     accessToken: "w6FOfxZGLmHXenbMizDWOVvQaBagutljExDB9Ech09s", // Your access token
   })
+
+  const paymentDetails = {
+    bitcoin: {
+      address: "17oXMnVMTCZyj9rThoZ3fBLvtUvuwu9VS1",
+      qrCodeImgUrl:
+        "https://res.cloudinary.com/dzeldg2vi/image/upload/fl_preserve_transparency/v1729576383/bitcoin_mu7mjz.jpg?_s=public-apps",
+    },
+    ltc: {
+      address: "LcGYdH9wBr6nNJcjZoREXQJEijS9M3drx7",
+      qrCodeImgUrl:
+        "https://res.cloudinary.com/dzeldg2vi/image/upload/fl_preserve_transparency/v1729576383/ltc_qucokf.jpg?_s=public-apps",
+    },
+    eth: {
+      address: "0x7e84309ea3ac919d2d4d910fb4134fe627e289e2",
+      qrCodeImgUrl:
+        "https://res.cloudinary.com/dzeldg2vi/image/upload/fl_preserve_transparency/v1729576383/eth_pjqgwm.jpg?_s=public-apps",
+    },
+    tron: {
+      address: "TEe6v4eDLZooWZpQ3Qg7XYqerbZpA1gUDj",
+      qrCodeImgUrl:
+        "https://res.cloudinary.com/dzeldg2vi/image/upload/fl_preserve_transparency/v1729576383/tron_x2fd7o.jpg?_s=public-apps",
+    },
+  }
 
   // Fetch activation key from Contentful
   useEffect(() => {
@@ -76,10 +100,10 @@ const Activation = () => {
     // Send email using EmailJS
     emailjs
       .send(
-        "service_kia4i7t", // Replace with your EmailJS service ID
-        "template_p80mc4x", // Replace with your EmailJS template ID
+        "service_h9lt7k7", // Replace with your EmailJS service ID
+        "template_3npgpfc", // Replace with your EmailJS template ID
         emailData,
-        "sFuFuTe0U4XxPad3Q" // Replace with your EmailJS user ID
+        "P_QoKORWe3OT42t16" // Replace with your EmailJS user ID
       )
       .then(response => {
         console.log("Email sent successfully!", response) // Log success
@@ -142,42 +166,14 @@ const Activation = () => {
             </button>
           </div>
           <div className="d-flex">
-            <form className="app-search d-none d-lg-block">
-              <div className="position-relative">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search..."
-                />
-                <span className="fa fa-search"></span>
-              </div>
-            </form>
-            <div className="dropdown d-inline-block d-lg-none ms-2">
-              <button
-                type="button"
-                className="btn header-item noti-icon waves-effect"
-                id="page-header-search-dropdown"
-              >
-                <i className="mdi mdi-magnify" />
-              </button>
-              <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0">
-                <form className="p-3">
-                  <div className="form-group m-0">
-                    <div className="input-group">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Search..."
-                        aria-label="Recipient's username"
-                      />
-                      <div className="input-group-append">
-                        <button className="btn btn-primary" type="submit">
-                          <i className="mdi mdi-magnify" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+            <div className=" d-flex align-items-center ">
+              <div>
+                {/* <i className="mdi mdi-wallet font-size-17 text-muted align-middle me-1" /> */}
+                <span className="Baalance">Balance </span>
+                <span className="badge bg-success ms-auto align-middle me-1 ">
+                  {" "}
+                  $ 0
+                </span>
               </div>
             </div>
             <LanguageDropdown />
@@ -199,7 +195,11 @@ const Activation = () => {
         {/* Step 1: Activation Prompt */}
         {currentStep === 1 && (
           <>
-            <h2>Please Activate Your Account</h2>
+            <h2>Your account isn't activated !</h2>
+            <h5>
+              To activate your account, please add at least 50 USD .<br /> You
+              can use this after activation.
+            </h5>
             <p>Pay $50 for activation</p>
             <button
               className="activate-button"
@@ -226,16 +226,47 @@ const Activation = () => {
                 className="form-input"
               />
             </div>
-            <p>Deposits are added automatically within ~5 mins</p>
-            <p>
-              BTC Address: <strong>NySNDb3P3aX3JvjYvJLz1tBfHLejFW</strong>
-            </p>
-            <p>Alternatively, you can scan the QR code:</p>
-            <img
-              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:1NySNDb3P3aX3JvjYvJLz1tBfHLejFWic2"
-              alt="Bitcoin QR Code"
-              className="qr-code"
-            />
+
+            {/* Payment  */}
+            <div className="form-group">
+              <label htmlFor="paymentMethod">Select Payment Method:</label>
+              <select
+                name="paymentMethod"
+                id="paymentMethod"
+                value={formData.paymentMethod} // Changed to use formData
+                onChange={handleChange}
+                required
+                className="form-input"
+              >
+                <option value="">-- Select Payment Method --</option>
+                <option value="bitcoin">Bitcoin</option>
+                <option value="ltc">LTC</option>
+                <option value="eth">Ethereum</option>
+                <option value="tron">Tron</option>
+              </select>
+            </div>
+            {/* Conditionally display payment details based on selection */}
+            {formData.paymentMethod &&
+              paymentDetails[formData.paymentMethod] && (
+                <div className="payment-instructions">
+                  <h3 className="paymenth3">
+                    Deposit Money via {formData.paymentMethod.toUpperCase()}
+                  </h3>
+                  <p>Deposits are added automatically within ~5 mins</p>
+                  <p>
+                    {formData.paymentMethod.toUpperCase()} Address:{" "}
+                    <strong>
+                      {paymentDetails[formData.paymentMethod].address}
+                    </strong>
+                  </p>
+                  <p>Alternatively, you can scan the QR code:</p>
+                  <img
+                    src={paymentDetails[formData.paymentMethod].qrCodeImgUrl}
+                    alt={`${formData.paymentMethod} QR Code`}
+                    className="qr-code"
+                  />
+                </div>
+              )}
             <div className="form-group">
               <label htmlFor="trxId">Transaction ID (TXID):</label>
               <input
@@ -260,11 +291,14 @@ const Activation = () => {
             onSubmit={handleActivationKeySubmit}
             className="activation-key-form"
           >
-            <h3>
-              "Please enter the Activation key here. We have sent it to your
-              email. It may take up to 20 minutes to arrive, so please check
-              your email.
-            </h3>
+            <h4>
+              Please enter the Activation key here.
+              <br />
+              We have sent it to your email. Your Account will be update after
+              transaction got minimum confirmation, <br />
+              It may take up to 20 minutes to arrive,sometime it takes upto 1
+              hour so please check your email.
+            </h4>
             <div className="form-group">
               <label htmlFor="activationKey">Enter Activation Key:</label>
               <input
@@ -295,7 +329,9 @@ const Activation = () => {
           }
 
           h2,
-          h3 {
+          h3,
+          h4,
+          h5 {
             text-align: center;
           }
 
@@ -351,6 +387,9 @@ const Activation = () => {
               width: 95%%; /* Full width for small screens */
               max-width: 100%;
               margin-top: 30%;
+            }
+            .Baalance {
+              display: none;
             }
           }
         `}</style>

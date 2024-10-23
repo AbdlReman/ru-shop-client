@@ -81,11 +81,11 @@ const ProfileMenu = props => {
             {props.t("Lock screen")}
           </DropdownItem> */}
 
-          {/* <div className="dropdown-divider"/>
-          <Link to="/logout" className="dropdown-item text-danger">
-            <i className="mdi mdi-power font-size-17 text-muted align-middle me-1 text-danger"/>
+          <div className="dropdown-divider" />
+          <Link to="/login" className="dropdown-item text-danger">
+            <i className="mdi mdi-power font-size-17 text-muted align-middle me-1 text-danger" />
             <span>{props.t("Logout")}</span>
-          </Link> */}
+          </Link>
         </DropdownMenu>
       </Dropdown>
     </React.Fragment>

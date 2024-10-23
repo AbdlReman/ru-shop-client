@@ -1,23 +1,19 @@
 import PropTypes from "prop-types"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { connect } from "react-redux"
-
 import { Link } from "react-router-dom"
-
-// Reactstrap
 
 // Import menuDropdown
 import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown"
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown"
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu"
 
-// import megamenuImg from "../../assets/images/megamenu-img.png"
 import logo from "../../assets/images/logo-sm.png"
 import logoLightPng from "../../assets/images/logo-light.png"
 import logoDark from "../../assets/images/logo-dark.png"
 
-//i18n
+// i18n
 import { withTranslation } from "react-i18next"
 
 // Redux Store
@@ -28,18 +24,16 @@ import {
 } from "../../store/actions"
 
 const Header = props => {
-  const [search, setsearch] = useState(false)
-  const [createmenu, setCreateMenu] = useState(false)
+  const [search, setSearch] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false) // To track sidebar state
 
-  // const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-
+  // Toggle fullscreen
   function toggleFullscreen() {
     if (
       !document.fullscreenElement &&
-      /* alternative standard method */ !document.mozFullScreenElement &&
+      !document.mozFullScreenElement &&
       !document.webkitFullscreenElement
     ) {
-      // current working methods
       if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen()
       } else if (document.documentElement.mozRequestFullScreen) {
@@ -60,11 +54,37 @@ const Header = props => {
     }
   }
 
+  // Toggle Sidebar
   function tToggle() {
-    var body = document.body
+    const body = document.body
     body.classList.toggle("vertical-collpsed")
     body.classList.toggle("sidebar-enable")
+
+    setIsMenuOpen(!isMenuOpen) // Update state for the toggle button icon
   }
+
+  // Close the sidebar when clicking outside on mobile
+  useEffect(() => {
+    function handleOutsideClick(event) {
+      if (isMenuOpen && window.innerWidth <= 768) {
+        const sidebar = document.querySelector(".vertical-menu-btn")
+        if (sidebar && !sidebar.contains(event.target)) {
+          tToggle() // Close sidebar if clicking outside
+        }
+      }
+    }
+
+    if (isMenuOpen) {
+      document.addEventListener("click", handleOutsideClick)
+    } else {
+      document.removeEventListener("click", handleOutsideClick)
+    }
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick)
+    }
+  }, [isMenuOpen])
+
   return (
     <React.Fragment>
       <header id="page-topbar">
@@ -73,16 +93,16 @@ const Header = props => {
             <div className="navbar-brand-box">
               <Link to="/" className="logo logo-dark">
                 <span className="logo-sm">
-                  <img src={logo} alt="" height="22" />
+                  <img src={logo} alt="" height="42" />
                 </span>
                 <span className="logo-lg">
-                  <img src={logoDark} alt="" height="37" />
+                  <img src={logoDark} alt="" height="67" />
                 </span>
               </Link>
 
               <Link to="/" className="logo logo-light">
                 <span className="logo-sm">
-                  <img src={logo} alt="" height="22" />
+                  <img src={logo} alt="" height="42" />
                 </span>
                 <span className="logo-lg">
                   <img src={logoLightPng} alt="" height="69" />
@@ -98,11 +118,13 @@ const Header = props => {
               className="btn btn-sm px-3 font-size-24 header-item waves-effect vertical-menu-btn"
               id="vertical-menu-btn"
             >
-              <i className="mdi mdi-menu"></i>
+              {/* Conditional rendering for the toggle icon */}
+              <i className={`mdi ${isMenuOpen ? "mdi-close" : "mdi-menu"}`}></i>
             </button>
           </div>
+
           <div className="d-flex">
-            <form className="app-search d-none d-lg-block">
+            {/* <form className="app-search d-none d-lg-block">
               <div className="position-relative">
                 <input
                   type="text"
@@ -111,11 +133,14 @@ const Header = props => {
                 />
                 <span className="fa fa-search"></span>
               </div>
-            </form>
-            <div className="dropdown d-inline-block d-lg-none ms-2">
+
+
+            </form> */}
+
+            {/* <div className="dropdown d-inline-block d-lg-none ms-2">
               <button
                 onClick={() => {
-                  setsearch(!search)
+                  setSearch(!search)
                 }}
                 type="button"
                 className="btn header-item noti-icon waves-effect"
@@ -149,7 +174,18 @@ const Header = props => {
                   </div>
                 </form>
               </div>
+            </div> */}
+            <div className=" d-flex align-items-center ">
+              <div>
+                {/* <i className="mdi mdi-wallet font-size-17 text-muted align-middle me-1" /> */}
+                <span className="Baalance">{props.t("Balance ")}</span>
+                <span className="badge bg-success ms-auto align-middle me-1 ">
+                  {" "}
+                  $ 0
+                </span>
+              </div>
             </div>
+
             <LanguageDropdown />
             <div className="dropdown d-none d-lg-inline-block">
               <button
@@ -168,6 +204,56 @@ const Header = props => {
           </div>
         </div>
       </header>
+      {/* Add some CSS styling */}
+      <style jsx>{`
+        /* Default layout (for larger screens) */
+        .navbar-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        /* Mobile layout (screen width less than or equal to 768px) */
+        @media (max-width: 768px) {
+          .navbar-header {
+            display: flex;
+            align-items: center;
+            // justify-content: center; /* Center the logo and toggle button */
+            position: relative;
+            padding: 0px;
+            padding-left: 39%;
+          }
+
+          /* Toggle button on the left corner */
+          .vertical-menu-btn {
+            position: absolute;
+            left: 10px; /* Adjust as needed */
+            top: 50%;
+            transform: translateY(-50%); /* Center vertically */
+          }
+
+          /* Logo in the center */
+          .logo {
+            position: relative;
+            display: flex;
+            justify-content: center;
+          }
+
+          /* Hide large logo on mobile */
+          .logo-lg {
+            display: none;
+          }
+          .Baalance {
+            display: none;
+          }
+
+          /* Show small logo on mobile */
+          .logo-sm {
+            display: block;
+            // margin-left: 150px;
+          }
+        }
+      `}</style>
     </React.Fragment>
   )
 }

@@ -20,7 +20,7 @@ const Chat = () => {
 
     emailjs
       .send(
-        "service_5v6eeoi",
+        "service_23gcvkn",
         "template_yinbo7h",
         formData,
         "aU2q_LGAXyRNadJu8"
