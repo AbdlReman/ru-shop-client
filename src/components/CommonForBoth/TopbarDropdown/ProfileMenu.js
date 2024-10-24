@@ -10,7 +10,7 @@ import {
 } from "reactstrap"
 
 //i18n
-import { withTranslation } from "react-i18next"
+
 // Redux
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
@@ -59,32 +59,32 @@ const ProfileMenu = props => {
           <DropdownItem tag="a" href="/">
             {" "}
             <i className="mdi mdi-account-circle font-size-17 text-muted align-middle me-1" />
-            {/* {props.t("Profile")}{" "} */}
+            {/* Profile{" "} */}
             {userEmail}
           </DropdownItem>
           <DropdownItem className="d-flex align-items-center" to="#">
             <i className="mdi mdi-wallet font-size-17 text-muted align-middle me-1" />
-            {props.t("Balance")}
+            Balance
             <span className="badge bg-success ms-auto">$ 0</span>
           </DropdownItem>
           {/* <DropdownItem tag="a" href="#">
             <i className="mdi mdi-wallet font-size-17 text-muted align-middle me-1" />
-            {props.t("My Wallet")}
+            My Wallet
           </DropdownItem>
           <DropdownItem className="d-flex align-items-center" to="#">
             <i className="mdi mdi-cog font-size-17 text-muted align-middle me-1"></i>
-            {props.t("Settings")}
+            Settings
             <span className="badge bg-success ms-auto">11</span>
           </DropdownItem>
           <DropdownItem tag="a" href="auth-lock-screen">
             <i className="mdi mdi-lock-open-outline font-size-17 text-muted align-middle me-1" />
-            {props.t("Lock screen")}
+            Lock screen
           </DropdownItem> */}
 
           <div className="dropdown-divider" />
           <Link to="/login" className="dropdown-item text-danger">
             <i className="mdi mdi-power font-size-17 text-muted align-middle me-1 text-danger" />
-            <span>{props.t("Logout")}</span>
+            <span>Logout</span>
           </Link>
         </DropdownMenu>
       </Dropdown>
@@ -102,6 +102,4 @@ const mapStatetoProps = state => {
   return { error, success }
 }
 
-export default withRouter(
-  connect(mapStatetoProps, {})(withTranslation()(ProfileMenu))
-)
+export default withRouter(connect(mapStatetoProps, {})(ProfileMenu))
