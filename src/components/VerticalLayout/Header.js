@@ -186,7 +186,7 @@ const Header = props => {
               </div>
             </div>
 
-            <LanguageDropdown />
+            {/* <LanguageDropdown /> */}
             <div className="dropdown d-none d-lg-inline-block">
               <button
                 type="button"

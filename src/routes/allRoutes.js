@@ -29,6 +29,8 @@ import MainHome from "pages/MainHome"
 import Activation from "pages/Activation"
 import Payment from "pages/Payment"
 import Premium from "pages/Premium"
+import Rules from "pages/Rules"
+import Cheaker from "pages/Cheaker"
 
 const userRoutes = [
   { path: "/dashboard", component: <MainHome /> },
@@ -37,6 +39,8 @@ const userRoutes = [
   { path: "/Premiumcards", component: <Premium /> },
   { path: "/mainhome", component: <MainHome /> },
   { path: "/cart", component: <Cart /> },
+  { path: "/rules", component: <Rules /> },
+  { path: "/cheaker", component: <Cheaker /> },
 
   { path: "/checkout", component: <Checkout /> },
   { path: "/payment", component: <Payment /> },

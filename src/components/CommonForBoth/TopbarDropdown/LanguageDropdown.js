@@ -35,17 +35,20 @@ const LanguageDropdown = () => {
 
   return (
     <>
-      <Dropdown isOpen={menu} toggle={toggle} className="d-none d-lg-inline-block ms-2">
+      <Dropdown
+        isOpen={menu}
+        toggle={toggle}
+        className="d-none d-lg-inline-block  ms-2"
+      >
         <DropdownToggle className="btn header-item waves-effect" tag="button">
           <img
             src={get(languages, `${selectedLang}.flag`)}
             alt="Header Language"
             height="16"
             className="me-2"
-          />
-         {" "}
-            {get(languages, `${selectedLang}.label`)}{" "}
-            <span className="mdi mdi-chevron-down"></span>
+          />{" "}
+          {get(languages, `${selectedLang}.label`)}{" "}
+          <span className="mdi mdi-chevron-down"></span>
         </DropdownToggle>
         <DropdownMenu className="language-switch dropdown-menu-end">
           {map(Object.keys(languages), key => (

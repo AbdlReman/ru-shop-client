@@ -165,7 +165,6 @@ const SidebarContent = props => {
             </li>
             <li>
               <Link to="/payment" className="waves-effect">
-                {/* <i className="mdi mdi-text-box-multiple-outline"></i> */}
                 <i className="mdi mdi-cash-plus " />
                 <span className="badge rounded-pill bg-primary float-end"></span>
                 <span>{props.t("Add Fund")}</span>
@@ -180,73 +179,26 @@ const SidebarContent = props => {
               </Link>
             </li>
             <li>
+              <Link to="/cheaker" className=" waves-effect">
+                <i className="mdi mdi-checkbox-marked-outline"></i>
+
+                <span>Cheaker</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/rules" className=" waves-effect">
+                <i className="mdi mdi-shield-lock-outline"></i>
+
+                <span>Rules</span>
+              </Link>
+            </li>
+            <li>
               <Link to="/login" className=" waves-effect">
                 <i className="mdi mdi-logout"></i>
 
                 <span>Log out</span>
               </Link>
             </li>
-            {/* <li>
-              <Link to="/cart" className="waves-effect">
-              
-                <i className="mdi mdi-cart" />
-                <span className="badge rounded-pill bg-primary float-end"></span>
-                <span>{props.t("Cart")}</span>
-              </Link>
-            </li>
-
-            <li className="menu-title">Extras</li>
-
-            <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-account-box"></i>
-                <span>{props.t("Authentication")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/login">{props.t("Login")}</Link>
-                </li>
-                <li>
-                  <Link to="/register">{props.t("Register")}</Link>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-text-box-multiple-outline"></i>
-                <span>{props.t("Extra Pages")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/pages-404">{props.t("Error 404")}</Link>
-                </li>
-              </ul>
-            </li> */}
-            {/* <li>
-              <Link to="/#" className="has-arrow waves-effect">
-                <i className="mdi mdi-share-variant"></i>
-                <span>{props.t("Multi Level")}</span>
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to="/#">{props.t("Level 1.1")}</Link>
-                </li>
-                <li>
-                  <Link to="/#" className="has-arrow">
-                    {props.t("Level 1.2")}
-                  </Link>
-                  <ul className="sub-menu">
-                    <li>
-                      <Link to="/#">{props.t("Level 2.1")}</Link>
-                    </li>
-                    <li>
-                      <Link to="/#">{props.t("Level 2.2")}</Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li> */}
           </ul>
         </div>
       </SimpleBar>
