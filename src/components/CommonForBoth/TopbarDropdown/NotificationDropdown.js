@@ -157,7 +157,6 @@ import SimpleBar from "simplebar-react"
 import { createClient } from "contentful"
 
 // i18n
-import { withTranslation } from "react-i18next"
 
 // Contentful client setup
 const client = createClient({
@@ -262,8 +261,7 @@ const NotificationDropdown = props => {
               className="btn btn-sm btn-link font-size-14 btn-block text-center"
               to="/"
             >
-              <i className="mdi mdi-arrow-right-circle me-1"></i>{" "}
-              {props.t("View all")}{" "}
+              <i className="mdi mdi-arrow-right-circle me-1"></i> View all{" "}
             </Link>
           </div>
         </DropdownMenu>
@@ -272,7 +270,7 @@ const NotificationDropdown = props => {
   )
 }
 
-export default withTranslation()(NotificationDropdown)
+export default NotificationDropdown
 
 NotificationDropdown.propTypes = {
   t: PropTypes.any,
