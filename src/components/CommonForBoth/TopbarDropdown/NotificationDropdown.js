@@ -219,7 +219,6 @@ const NotificationDropdown = props => {
           <div className="p-3">
             <Row className="align-items-center">
               <Col>
-                <h5 className="m-0">{props.t("")}</h5>
                 {addedCardsCount > 0 && (
                   <h6 className="mt-1 mb-0 ">
                     <span className="text-success m-2">{addedCardsCount}</span>{" "}
