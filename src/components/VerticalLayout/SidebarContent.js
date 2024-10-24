@@ -9,8 +9,8 @@ import MetisMenu from "metismenujs"
 import withRouter from "components/Common/withRouter"
 import { Link } from "react-router-dom"
 
-//i18n
-import { withTranslation } from "react-i18next"
+// //i18n
+// import { withTranslation } from "react-i18next"
 
 const SidebarContent = props => {
   const ref = useRef()
@@ -141,33 +141,33 @@ const SidebarContent = props => {
       <SimpleBar style={{ maxHeight: "100%" }} ref={ref}>
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            {/* <li className="menu-title">{props.t("Main")} </li> */}
+            {/* <li className="menu-title">Main </li> */}
             <li>
               <Link to="/" className="waves-effect">
                 <i className="mdi mdi-home-outline"></i>
                 <span className="badge rounded-pill bg-primary float-end"></span>
-                <span>{props.t("main")}</span>
+                <span>main</span>
               </Link>
             </li>
             <li>
               <Link to="/cards" className="waves-effect">
                 <i className="mdi mdi-credit-card-outline"></i>
                 <span className="badge rounded-pill bg-primary float-end"></span>
-                <span>{props.t("Cards")}</span>
+                <span>Cards</span>
               </Link>
             </li>
             <li>
               <Link to="/Premiumcards" className="waves-effect">
                 <i className="mdi mdi-credit-card-outline"></i>
                 <span className="badge rounded-pill bg-primary float-end"></span>
-                <span>{props.t("Premium Cards")}</span>
+                <span>Premium Cards</span>
               </Link>
             </li>
             <li>
               <Link to="/payment" className="waves-effect">
                 <i className="mdi mdi-cash-plus " />
                 <span className="badge rounded-pill bg-primary float-end"></span>
-                <span>{props.t("Add Fund")}</span>
+                <span>Add Fund</span>
               </Link>
             </li>
 
@@ -211,4 +211,4 @@ SidebarContent.propTypes = {
   t: PropTypes.any,
 }
 
-export default withRouter(withTranslation()(SidebarContent))
+export default withRouter(SidebarContent)
