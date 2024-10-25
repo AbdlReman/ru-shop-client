@@ -158,7 +158,7 @@ const SidebarContent = props => {
             </li>
             <li>
               <Link to="/Premiumcards" className="waves-effect">
-                <i className="mdi mdi-credit-card-outline"></i>
+                <i className="mdi mdi-credit-card-multiple-outline"></i>
                 <span className="badge rounded-pill bg-primary float-end"></span>
                 <span>Premium Cards</span>
               </Link>

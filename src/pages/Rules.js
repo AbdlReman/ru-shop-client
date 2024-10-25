@@ -25,7 +25,9 @@ const Rules = () => {
           We accept only Bitcoin ,LTC,ETH and Tron
           <br />
           It's not a refunded way, we replace only DEAD cards. But if you know
-          that card not valid - ask support please.
+          that card not valid - ask support please. <br />
+          If someone deposits $50 or more, it will be added to the fund. If the
+          deposit is less than $50, it will go to pending.
         </li>
         <hr style={{ color: "#0998a8" }} />
       </ul>

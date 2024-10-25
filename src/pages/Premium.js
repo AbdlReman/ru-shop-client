@@ -39,6 +39,7 @@ export default function Premium() {
             securityPin: item.fields.securityPin,
             nonVbv: item.fields.nonVbv,
             refund: item.fields.refund,
+            validation: item.fields.validation,
             price: item.fields.price,
             premium: item.fields.premium, // Fetch premium field
           }))
@@ -195,6 +196,7 @@ export default function Premium() {
                 <th>Security PIN</th>
                 <th>Non VBV</th>
                 <th>Refund</th>
+                <th>Validation</th>
                 <th>Price</th>
                 <th>Action</th>
               </tr>
@@ -223,6 +225,7 @@ export default function Premium() {
                   <td>{product.securityPin}</td>
                   <td>{product.nonVbv ? "Yes" : "No"}</td>
                   <td>{product.refund ? "Yes" : "No"}</td>
+                  <td>{product.validation}%</td>
                   <td>${product.price}</td>
                   <td>
                     <button
