@@ -95,6 +95,7 @@ const Header = props => {
                 <span className="logo-sm">
                   <img src={logo} alt="" height="62" />
                 </span>
+
                 <span className="logo-lg">
                   <img src={logoDark} alt="" height="67" />
                 </span>
@@ -241,6 +242,9 @@ const Header = props => {
 
           /* Hide large logo on mobile */
           .logo-lg {
+            display: none;
+          }
+          .logo-dark {
             display: none;
           }
           .Baalance {

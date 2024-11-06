@@ -192,6 +192,13 @@ const SidebarContent = props => {
                 <span>Rules</span>
               </Link>
             </li>
+            {/* <li>
+              <Link to="/purchase" className=" waves-effect">
+                <i className="mdi mdi-wallet"></i>
+
+                <span>Purchase</span>
+              </Link>
+            </li> */}
             <li>
               <Link to="/login" className=" waves-effect">
                 <i className="mdi mdi-logout"></i>

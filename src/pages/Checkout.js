@@ -2,6 +2,7 @@ import { useState } from "react"
 import emailjs from "emailjs-com" // Import EmailJS
 import { useCart } from "components/context/CartContext"
 import PaymentMethod from "components/PaymentMethod"
+import { useNavigate } from "react-router-dom" // Import useNavigate
 
 export default function Checkout() {
   const { cart, clearCart } = useCart() // Use the cart context
@@ -10,6 +11,7 @@ export default function Checkout() {
     email: "",
     phone: "",
   })
+  const navigate = useNavigate() // Initialize navigate for navigation
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -43,8 +45,13 @@ export default function Checkout() {
         "aU2q_LGAXyRNadJu8" // replace with your EmailJS user ID
       )
       .then(response => {
-        alert("Checkout successful!")
+        alert(
+          "Checkout successful!  || Please check your Gmail; we have sent the VCC details to your inbox. You should receive it within 5 minutes."
+        )
+        navigate("/", { state: { cartDetails: cart } })
         clearCart() // Clear the cart after successful checkout
+
+        // Navigate to Purchase component and pass cart details
       })
       .catch(error => {
         console.log("Failed to send email:", error)
@@ -93,7 +100,7 @@ export default function Checkout() {
             <PaymentMethod />
 
             <div className="form-group">
-              <label htmlFor="phone">transaction ID (TXID)</label>
+              <label htmlFor="phone">Transaction ID (TXID)</label>
               <input
                 type="text"
                 name="phone"

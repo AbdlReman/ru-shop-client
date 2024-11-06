@@ -31,6 +31,7 @@ import Payment from "pages/Payment"
 import Premium from "pages/Premium"
 import Rules from "pages/Rules"
 import Cheaker from "pages/Cheaker"
+import Purchase from "pages/Purchase"
 
 const userRoutes = [
   { path: "/dashboard", component: <MainHome /> },
@@ -41,6 +42,7 @@ const userRoutes = [
   { path: "/cart", component: <Cart /> },
   { path: "/rules", component: <Rules /> },
   { path: "/cheaker", component: <Cheaker /> },
+  // { path: "/purchase", component: <Purchase /> },
 
   { path: "/checkout", component: <Checkout /> },
   { path: "/payment", component: <Payment /> },

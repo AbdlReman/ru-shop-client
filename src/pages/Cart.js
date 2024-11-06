@@ -86,6 +86,9 @@ export default function Cart() {
                     <td>{product.address}</td>
                     <td>{product.securityPin}</td>
                     <td>${product.price}</td>
+                    {/* Hide the fullbin td */}
+                    <td className="hidden">{product.fullbin}</td>
+
                     <td>
                       <button
                         className="removeButton"
@@ -114,6 +117,9 @@ export default function Cart() {
             font-size: 24px;
             margin-bottom: 20px;
             color: #fff;
+          }
+          .hidden {
+            display: none; /* Hide the fullbin column */
           }
           .cartItems {
             margin-top: 20px;

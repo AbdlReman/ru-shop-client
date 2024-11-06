@@ -302,6 +302,7 @@ export default function Cards() {
           refund: item.fields.refund,
           validation: item.fields.validation,
           price: item.fields.price,
+          fullbin: item.fields.fullbin,
         }))
         setProducts(fetchedProducts)
       } catch (error) {
